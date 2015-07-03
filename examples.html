@@ -7,7 +7,12 @@
         var nameApp = angular.module('nameApp', []);
         nameApp.controller('NameCtrl', function ($scope){
             $scope.firstName = 'John';
-            $scope.lastName = 'Smith';
+            $scope.$watch('lastName', function(newValue, oldValue){
+                console.log('new value is ' + newValue);
+            });
+            setTimeout(function(){
+                $scope.lastName = 'Smith';
+            }, 1000);
         });
     </script>
 </head>
@@ -16,6 +21,6 @@ First name:<input ng-model="firstName" type="text"/>
 <br>
 Last name:<input ng-model="lastName" type="text"/>
 <br>
-Hello {{firstName}} {{lastName}} Mr Carson
+Hello {{firstName}} {{lastName}}
 </body>
 </html>
